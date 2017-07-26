@@ -1,57 +1,57 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var sass = require('gulp-sass');
-var coffee = require('gulp-coffee');
-var uglify = require('gulp-uglify'),
+var gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    sass = require('gulp-sass'),
+    coffee = require('gulp-coffee'),
+    connect = require('gulp-connect'),
+    uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
-var connect = require('gulp-connect');
 
-//copy index to assets
-gulp.task('copy', function() {
-    gulp.src('index.html')
-        .pipe(gulp.dest('assets'))
-});
+var coffeeSources = ['scripts/hello.coffee'],
+    jsSources = ['src/**/*.js'],
+    sassSources = ['src/styles/*.scss'],
+    htmlSources = ['src/**/*.html'],
+    outputDir = 'assets';
 
-//console log Jenny
-gulp.task('log', function() {
-    gutil.log('Jenny')
-});
 
-//put main.css into assets
+// gulp.task('log', function() {
+//     gutil.log('== My First Task ==')
+// });
+
+// gulp.task('copy', function() {
+//     gulp.src('index.html')
+//         .pipe(gulp.dest(outputDir))
+// });
+
 gulp.task('sass', function() {
-    gulp.src('styles/main.scss')
+    gulp.src(sassSources)
         .pipe(sass({style: 'expanded'}))
         .on('error', gutil.log)
         .pipe(gulp.dest('assets'))
+        .pipe(connect.reload())
 });
 
-//
-gulp.task('coffee', function() {
-gulp.src('scripts/hello.coffee')
-    .pipe(coffee({bare: true})
-        .on('error', gutil.log))
-    .pipe(gulp.dest('scripts'))
-});
+// gulp.task('coffee', function() {
+//     gulp.src(coffeeSources)
+//         .pipe(coffee({bare: true})
+//             .on('error', gutil.log))
+//         .pipe(gulp.dest('scripts'))
+// });
 
-//minify all the js files
 gulp.task('js', function() {
-    gulp.src('scripts/*.js')
+    gulp.src(jsSources)
         .pipe(uglify())
         .pipe(concat('script.js'))
-        .pipe(gulp.dest('assets'))
+        .pipe(gulp.dest(outputDir))
+        .pipe(connect.reload())
 });
 
-//combine of two tasks
-//gulp.task('default', ['coffee', 'js']);
-
-//gulp watch
 gulp.task('watch', function() {
-    gulp.watch('scripts/hello.coffee', ['coffee']);
-    gulp.watch('scripts/*.js', ['js']);
-    gulp.watch('styles/main.scss', ['sass']);
+//    gulp.watch(coffeeSources, ['coffee']);
+    gulp.watch(jsSources, ['js']);
+    gulp.watch(sassSources, ['sass']);
+    gulp.watch(htmlSources, ['html']);
 });
 
-//server
 gulp.task('connect', function() {
     connect.server({
         root: '.',
@@ -59,4 +59,9 @@ gulp.task('connect', function() {
     })
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('html', function() {
+    gulp.src(htmlSources)
+        .pipe(connect.reload())
+});
+
+gulp.task('default', ['html', 'coffee', 'js', 'sass', 'connect', 'watch']);
