@@ -1,0 +1,46 @@
+<form class="inmiddle">
+    <div ng-show="model.message" class="alert alert-danger">
+        {{model.message}}
+    </div>
+    <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" class="form-control" id="username" placeholder="Username" ng-model = "model.user.username">
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <label>
+                <input type="checkbox"> 男
+            </label>
+        </div>
+        <div class="col-xs-6">
+            <label>
+                <input type="checkbox"> 女
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">密码</label>
+        <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com" ng-model = "model.user.email">
+    </div>
+    <!--<div class="form-group">-->
+        <!--<label class="col-lg-1 control-label">地址</label>-->
+        <!--<div class="col-lg-5">-->
+            <!--<ui-select ng-model="vm.comSelectedItem" search-enabled="true">-->
+                <!--<ui-select-match placeholder="允许输入">-->
+                    <!--<span ng-bind="vm.comSelectedItem.name"></span>-->
+                <!--</ui-select-match>-->
+                <!--<ui-select-choices repeat="item in (vm.selectedArray | filter: $select.search) track by item.id">-->
+                    <!--<span ng-bind="item.name"></span>-->
+                <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+        <!--</div>-->
+        <!--<p class="col-lg-6">已选择: {{vm.comSelectedItem}}</p>-->
+    <!--</div>-->
+    <div class="form-group">
+        <label for="birth">出生日期</label>
+        <input type="text" class="form-control" id="last-name" placeholder="Wonderland" ng-model = "model.user.lastName">
+    </div>
+    <button class="btn btn-primary btn-block"
+       ng-click="model.click()">click</button>
+
+</form>
