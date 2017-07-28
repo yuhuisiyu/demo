@@ -1,12 +1,11 @@
 var gulp = require('gulp'),
-    gutil = require('gulp-util'),
     sass = require('gulp-sass'),
-    coffee = require('gulp-coffee'),
     connect = require('gulp-connect'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     open = require('gulp-open'),
-    pump = require('pump'),
+    babelify = require('babelify'),
+    browserify = require('browserify'),
     babel = require('gulp-babel');
 var
     //coffeeSources = ['scripts/hello.coffee'],
@@ -43,11 +42,20 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {
         gulp.src(jsSources)
-        .pipe(babel())
-        .pipe(concat('script.js'))
-        // .pipe(uglify())
-        .pipe(gulp.dest(outputDir))
+        // .pipe(babel())
+        // .pipe(concat('script.js'))
+        // // .pipe(uglify())
+        // .pipe(gulp.dest(outputDir))
         .pipe(connect.reload())
+});
+
+gulp.task('babel', function () {
+         return browserify(jsSources)
+        .transform(babelify)
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('outputDir'));
 });
 
 gulp.task('watch', function() {
