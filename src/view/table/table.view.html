@@ -1,0 +1,10 @@
+<div class="inmiddle">
+    <ul uib-pagination total-items="vm.bigTotalItems" ng-model="vm.bigCurrentPage"
+        first-text="前" next-text="下一页"
+        max-size="vm.bigmaxSize" class="pagination-md" boundary-links="true" num-pages="numPages">
+    </ul>
+    <ul uib-pagination="" total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize"
+        ng-change="pageChanged()">
+    </ul>
+</div>
+

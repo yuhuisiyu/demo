@@ -1,41 +1,10 @@
-import controllers from './controllers.js';
+// import controllers from './controllers.js';
+// var userController = require('./view/user/user.controller.js');
+// var tableController = require('./view/table/table.controller.js');
+// var fileController = require('./view/file/file.controller.js');
+// var barController = require('./view/bar/bar.controller.js');
 
-// var demo = angular.module('Demo', ['ui.router',controllers.name]);
-//
-//
-// demo.config(function($stateProvider) {
-//     $stateProvider
-//         .state('user', {
-//             url:'/user',
-//             templateUrl: 'src/user/user.view.html',
-//             controller: 'userController',
-//             controllerAs:'vm'
-//         })
-//     // .state('table',{
-//     //     url:'#/table',
-//     //     templateUrl: 'table/table.view.html',
-//     //     controller: 'tableController'
-//     // })
-//     // .state('file',{
-//     //     url:'#/file',
-//     //     templateUrl: 'file-upload/file.view.html',
-//     //     controller: 'fileController'
-//     // })
-//     // .state('bar',{
-//     //     url:'#/bar',
-//     //     templateUrl: 'progressbar/bar.view.html',
-//     //     controller: 'barController'
-//     // })
-// });
-//
-//
-//
-//
-//
-
-
-
-    angular.module('Demo', ['ui.router',controllers.name])
+    angular.module('Demo', ['ui.router','ui.select','ui.bootstrap'])
         .config(routeConfig);
 
     /** @ngInject */
@@ -47,19 +16,22 @@ import controllers from './controllers.js';
                 controller: 'userController',
                 controllerAs:'vm'
             })
-            // .state('table',{
-            //     url:'/table',
-            //     templateUrl: 'src/view/table/table.view.html',
-            //     controller: 'tableController'
-            // })
-            // .state('file',{
-            //     url:'/file',
-            //     templateUrl: 'src/view/file/file.view.html',
-            //     controller: 'fileController'
-            // })
-            // .state('bar',{
-            //     url:'/bar',
-            //     templateUrl: 'src/view/bar/bar.view.html',
-            //     controller: 'barController'
-            // })
+            .state('table',{
+                url:'/table',
+                templateUrl: 'src/view/table/table.view.html',
+                controller: 'tableController',
+                controllerAs:'vm'
+            })
+            .state('file',{
+                url:'/file',
+                templateUrl: 'src/view/file/file.view.html',
+                controller: 'fileController',
+                controllerAs:'vm'
+            })
+            .state('bar',{
+                url:'/bar',
+                templateUrl: 'src/view/bar/bar.view.html',
+                controller: 'barController',
+                controllerAs:'vm'
+            })
     }

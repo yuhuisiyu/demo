@@ -1,12 +1,21 @@
-<form class="inmiddle">
-    <div ng-show="model.message" class="alert alert-danger">
-        {{model.message}}
+<form class="inmiddle userForm" name="userForm" novalidate="">
+    <div ng-show="vm.message" class="alert alert-danger">
+        {{vm.message}}
     </div>
-    <div class="form-group">
-        <label for="username">用户名</label>
-        <input type="text" class="form-control" id="username" placeholder="Username" ng-model = "model.user.username">
+
+    <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid &&userForm.name.$pristine }">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" ng-model="user.name" required="" placeholder="王大牛">
+        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
     </div>
-    <div class="row">
+
+    <div class="form-group" ng-class="{'has-error' : userForm.password.$invalid &&userForm.password.$pristine}">
+        <label>密码</label>
+        <input type="password" name="password" ng-model="user.password"  required="" class="form-control"
+               uib-tooltip="请输入密码" tooltip-placement="top" tooltip-trigger="'mouseenter'" tooltip-enable="userForm.password.$invalid &&userForm.password.$pristine">
+    </div>
+
+    <div class="form-group row">
         <div class="col-xs-6">
             <label>
                 <input type="checkbox"> 男
@@ -18,29 +27,39 @@
             </label>
         </div>
     </div>
-    <div class="form-group">
-        <label for="email">密码</label>
-        <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com" ng-model = "model.user.email">
-    </div>
-    <!--<div class="form-group">-->
-        <!--<label class="col-lg-1 control-label">地址</label>-->
-        <!--<div class="col-lg-5">-->
-            <!--<ui-select ng-model="vm.comSelectedItem" search-enabled="true">-->
-                <!--<ui-select-match placeholder="允许输入">-->
-                    <!--<span ng-bind="vm.comSelectedItem.name"></span>-->
-                <!--</ui-select-match>-->
-                <!--<ui-select-choices repeat="item in (vm.selectedArray | filter: $select.search) track by item.id">-->
-                    <!--<span ng-bind="item.name"></span>-->
-                <!--</ui-select-choices>-->
-            <!--</ui-select>-->
-        <!--</div>-->
-        <!--<p class="col-lg-6">已选择: {{vm.comSelectedItem}}</p>-->
-    <!--</div>-->
-    <div class="form-group">
-        <label for="birth">出生日期</label>
-        <input type="text" class="form-control" id="last-name" placeholder="Wonderland" ng-model = "model.user.lastName">
-    </div>
-    <button class="btn btn-primary btn-block"
-       ng-click="model.click()">click</button>
 
+    <div class="form-group row">
+        <label class="col-lg-1 control-label">地址</label>
+        <div class="col-lg-5">
+            <ui-select ng-model="vm.selectedItem" search-enabled="true">
+                <ui-select-match placeholder="请选择地址">
+                    <span ng-bind="vm.selectedItem.address"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item in (vm.selectedArray | filter: $select.search) track by item.id">
+                    <span ng-bind="item.address"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <p class="col-lg-6">你的地址： {{vm.selectedItem.address}}</p>
+    </div>
+
+    <div class="date-picker-module">
+        <input date-range-picker="" class="form-control date-picker" type="text" ng-model="vm.daterange" options="{singleDatePicker: true}">
+    </div>
+
+        <button class="btn btn-primary btn-block"
+                ng-click="vm.open()"
+        ng-disabled="userForm.$invalid">click
+        </button>
+
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">header</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            the body
+        </div>
+    </script>
 </form>
+
+

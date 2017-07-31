@@ -49,14 +49,24 @@ gulp.task('js', function() {
         .pipe(connect.reload())
 });
 
-gulp.task('babel', function () {
-         return browserify(jsSources)
-        .transform(babelify)
-        .bundle()
-        .pipe(source('main.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('outputDir'));
-});
+// gulp.task('babel', function () {
+//     return browserify({entires:jsSources})
+//         .transform(babelify, { presets: 'es2015'})
+//         .bundle()
+//         .pipe(source('main.js'))
+//         .pipe(buffer())
+//         // .pipe(concat('main.js'))
+//         .pipe(gulp.dest(outputDir));
+// });
+//
+// gulp.task("babel", function () {
+//     return gulp.src(jsSources)// ES6 源码存放的路径
+//         .pipe(babel({
+//             presets: ['es2015']
+//         }))
+//         .pipe(concat('main.js'))
+//         .pipe(gulp.dest(outputDir)); //转换成 ES5 存放的路径
+// });
 
 gulp.task('watch', function() {
 //    gulp.watch(coffeeSources, ['coffee']);
@@ -79,10 +89,11 @@ gulp.task('html', function() {
 
 // gulp.task('open', function(){
 //     var options = {
-//         url: "http://localhost:8080"
+//         url: 'localhost:8080',
+//         app: 'chrome'
 //     };
-//     gulp.src("./index.html")
-//         .pipe(open("", options));
+//     gulp.src("_filename")
+//         .pipe(open(options));
 // });
 
 gulp.task('default', ['html', 'js', 'sass', 'connect', 'watch']);
