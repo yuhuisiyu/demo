@@ -6,14 +6,11 @@
 
 angular.module('Demo').controller('tableController',tableController);
 
-function tableController($scope) {
+function tableController() {
 
     var vm = this;
 
-    vm.totalItems = 100;
-    vm.currentPage = 2;
-    vm.maxSize = 3;
-    vm.bigmaxSize = 5;
-    vm.bigTotalItems = 175;
-    vm.bigCurrentPage = 4;
+    vm.bigmaxSize = 1;
+    vm.bigTotalItems = 70;
+    vm.bigCurrentPage = new Date().getDay();
 }

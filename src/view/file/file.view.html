@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<form name="myForm" class="inmiddle">
+    <div class="form-group">
+        <label class="control-label">Username:</label>
+        <input type="text" class="form-control" name="userName" ng-model="username" size="39" required="">
+        <p class="help-block" ng-show="myForm.userName.$error.required">*required</p>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Profile Picture:</label>
+        <input type="file" class="form-control" ngf-select="" ng-model="picFile" name="file" ngf-accept="'image/*'" required="">
+        <p class="help-block" ng-show="myForm.file.$error.required">*required</p>
+        <br>
+        <div class="drop-box" ngf-select="" ngf-drop="" ng-model="picFile" ngf-accept="'image/*'">
+            文件上传
+        </div>
+        <br>
+        <a role="button" class="thumbnail" ng-show="picFile">
+            <img ngf-src="picFile" class="thumb">
+        </a>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" ng-disabled="!myForm.$valid">
+            Submit
+        </button>
+    </div>
+</form>

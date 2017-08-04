@@ -7,22 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--style-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="src/styles/style.css">
   <link rel="stylesheet" href="src/styles/ui-select.css">
-  <link rel="stylesheet" href="src/styles/daterangepicker.css">
   <link rel="stylesheet" href="src/styles/ui-bootstrap-custom-2.5.0-csp.css">
+  <link rel="stylesheet" href="src/styles/daterangepicker.css">
+  <link rel="stylesheet" href="src/styles/bootstrap-slider.css">
 
 
   <!--library-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script src="src/library/angular.js"></script>
   <script src="src/library/angular-ui-router.js"></script>
+  <!--<script src="src/library/jquery.js"></script>-->
   <script src="src/library/select.min.js"></script>
-  <script src="src/library/angular-daterangepicker.min.js"></script>
-  <script src="src/library/daterangepicker.js"></script>
   <script src="src/library/ui-bootstrap-tpls-2.5.0.min.js"></script>
-  <script src="src/library/jquery.js"></script>
   <script src="src/library/moment.js"></script>
+  <script src="src/library/daterangepicker.js"></script>
+  <script src="src/library/angular-daterangepicker.js"></script>
+  <script src="src/library/ng-file-upload.min.js"></script>
+  <script src="src/library/bootstrap-slider.js"></script>
+  <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
+
+
   <!--mainjs-->
   <script src="src/config.js"></script>
 
@@ -35,26 +45,43 @@
 </head>
 
 <body ng-app = "Demo">
-<nav class="navbar navbar-light navbar-fixed-top bg-primary">
-  <div class="container-fluid">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
     <div class="navbar-header">
-     <h5>Demo practice</h5>
+            <h2>
+                Demo</h2>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a ui-sref="user"><h5><strong>注册</strong></h5></a>
+        </li>
+        <li class="page-scroll">
+          <a ui-sref="bar">
+            <h5><strong>我的任务</strong></h5>
+          </a>
+        </li>
+        <li class="page-scroll">
+          <a ui-sref="table"><h5><strong>每日菜单</strong></h5></a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 
 <div  ui-view=""></div>
 
-<nav class="navbar navbar-light navbar-fixed-bottom bg-primary">
-    <div class="container-fluid">
-      <div class="row">
-        <a class="btn btn-default" ui-sref="user">user</a>
-        <a class="btn btn-primary" ui-sref="table">table</a>
-        <a class="btn btn-danger" ui-sref="bar">progressbar</a>
-        <a class="btn btn-danger" ui-sref="file">file-upload</a>
-      </div>
+
+<nav class="navbar navbar-transparent navbar-fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                Copyright &copy; Huisiyu Yu 2017
+            </div>
+        </div>
     </div>
 </nav>
-
 </body>
 </html>

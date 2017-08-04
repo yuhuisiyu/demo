@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="inmiddle3 container-fluid">
 
-</body>
-</html>
+    <button class="pull-right" ng-click="vm.open()" >新建任务</button>
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-body" id="modal-body">
+            <form name="myForm">
+            <div class="form-group" ng-class="{'has-error':myForm.taskName.$error.required}">
+            <label class="control-label">任务名称:</label>
+            <input type="text" class="form-control" name="taskName" ng-model="vm.taskName" required
+            placeholder="任务名称"
+            uib-tooltip="请输入任务名称"
+            tooltip-placement="top"
+            tooltip-trigger="'mouseenter'"
+            tooltip-enable="myForm.taskName.$error.required">
+            </div>
+
+            <div class="form-group" ng-class="{'has-error':myForm.taskDes.$error.required}">
+            <label class="control-label">任务描述:</label>
+            <textarea type="text" class="form-control" row="5" name="taskDes" ng-model="vm.taskDes" required
+            placeholder="任务描述"
+            uib-tooltip="请输入任务描述"
+            tooltip-placement="top"
+            tooltip-trigger="'mouseenter'"
+            tooltip-enable="myForm.taskDes.$error.required">
+            </textarea>
+            </div>
+
+            <div class="form-group">
+            <label class="control-label">Profile Picture:</label>
+            <input type="file" class="form-control" ngf-select="" ng-model="vm.picFile" name="file" ngf-accept="'image/*'">
+            <br>
+            <a role="button" class="thumbnail" ng-show="picFile">
+            <img ngf-src="picFile" class="thumb">
+            </a>
+            </div>
+            <div class="form-group">
+            <button class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="vm.create()">
+            提交
+            </button>
+            </div>
+            </form>
+        </div>
+    </script>
+
+    <div>
+        <h3>当前任务</h3>
+        <div class="panel panel-default"  ng-repeat="task in vm.tasks">
+            <div class="panel-heading">
+                <div class="row">
+                    <h3 class="panel-title col-xs-5">{{task.title}}</h3>
+                    <a class="col-xs-2 pull-right" data-toggle="collapse" href="#{{task.id}}">详情</a>
+                </div>
+            </div>
+            <div class="panel-collapse collapse" id="{{task.id}}">
+
+                <div class="panel-body">
+                            <h5><strong>任务描述:</strong></h5>
+                            <p>{{task.description}}</p>
+                    <h5><strong>进度:</strong></h5>
+                    <uib-progressbar class="progress-striped active" max="100" value="task.value" type="info"><i>{{task.value}} / 100</i></uib-progressbar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!---->
+
+    <!--<hr>-->
+    <!--<h3>Dynamic <button type="button" class="btn btn-sm btn-primary" ng-click="vm.random()">Randomize</button></h3>-->
+    <!--<uib-progressbar  animate="false" max="vm.max" value="vm.dynamic"><span style="color:white; white-space:nowrap;">{{vm.dynamic}} / {{vm.max}}</span></uib-progressbar>-->
+
+    <!--<small><em>Animated</em></small>-->
+    <!--<uib-progressbar value="vm.dynamic" type="success"><b>{{vm.dynamic}}%</b></uib-progressbar>-->
+
+    <!--<small><em>Object (changes type based on value)</em></small>-->
+    <!--<uib-progressbar class="progress-striped active" value="vm.dynamic" type="{{type}}"> <i ng-show="vm.showWarning">？！！</i>-->
+        <!--<i ng-show="vm.showhint">嘿嘿</i></uib-progressbar>-->
+
+    <!--<hr>-->
+    <!--<h3>Stacked <button type="button" class="btn btn-sm btn-primary" ng-click="vm.randomStacked()">Randomize</button></h3>-->
+    <!--<uib-progress><uib-bar ng-repeat="bar in vm.stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></uib-bar></uib-progress>-->
+
+    <!--<div class="form-group">-->
+        <!--数:{{vm.sliderValue}}-->
+        <!--<slider ng-model="vm.sliderValue" min="vm.bar.min" step="vm.bar.step" max="vm.bar.max" value="vm.bar.value"></slider>-->
+    <!--</div>-->
+
+</div>

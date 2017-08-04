@@ -1,6 +1,29 @@
 .inmiddle{
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.inmiddle2{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.inmiddle3{
+    /*margin-top: 5%;*/
+    margin-bottom: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.drop-box {
+    background: hotpink;
+    border: 5px dashed purple;
+    width: 170px;
+    text-align: center;
+    padding: 50px 10px;
+    margin-left: 10px;
 }

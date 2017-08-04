@@ -4,8 +4,10 @@
 // var fileController = require('./view/file/file.controller.js');
 // var barController = require('./view/bar/bar.controller.js');
 
-    angular.module('Demo', ['ui.router','ui.select','ui.bootstrap'])
-        .config(routeConfig);
+    angular.module('Demo', ['ui.router','ui.select','ui.bootstrap','daterangepicker','ngFileUpload','ui.bootstrap-slider'])
+        .config(routeConfig).run(function ($state) {
+        $state.go('table')
+    });
 
     /** @ngInject */
     function routeConfig($stateProvider) {
@@ -22,12 +24,12 @@
                 controller: 'tableController',
                 controllerAs:'vm'
             })
-            .state('file',{
-                url:'/file',
-                templateUrl: 'src/view/file/file.view.html',
-                controller: 'fileController',
-                controllerAs:'vm'
-            })
+            // .state('file',{
+            //     url:'/file',
+            //     templateUrl: 'src/view/file/file.view.html',
+            //     controller: 'fileController',
+            //     controllerAs:'vm'
+            // })
             .state('bar',{
                 url:'/bar',
                 templateUrl: 'src/view/bar/bar.view.html',
