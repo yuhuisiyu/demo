@@ -4,82 +4,64 @@
             {{vm.message}}
         </div>
 
-        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$error.required || userForm.name.$error.pattern}">
-            <label>用户名</label>
-            <input type="text" name="name" class="form-control" ng-model="vm.user.name" required="" placeholder="长度为3~12并且由字母组成" pattern="[A-z]{3,12}">
-            <p ng-show="userForm.name.$error.required" class="help-block">请输入用户名</p>
-            <p ng-show="userForm.name.$error.pattern" class="help-block">用户名长度为3~12并且由字母组成</p>
+        <div class="form-group" >
+            <label><span class="star" style="color: firebrick">*</span>用户名</label>
+            <input type="text" name="name" class="form-control" ng-model="vm.username" required="" ng-change="vm.usernamechange()" ng-model-options="{allowInvalid: true}" placeholder="由3~12位字母组成" pattern="[A-z]{3,12}">
+            <p ng-show="userForm.name.$error.required && vm.usernameinput" class="has-error" style="color: firebrick">请输入用户名</p>
+            <p ng-show="userForm.name.$error.pattern && vm.usernameinput" class="has-error"style="color: firebrick">用户名长度为3~12并且由字母组成</p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-error' : userForm.password.$error.required || userForm.password.$error.pattern}">
-            <label>密码</label>
-            <input type="password" name="password" class="form-control" ng-model="vm.user.password" required placeholder="密码3~9位数字" pattern="\d{3,9}">
-            <p ng-show="userForm.password.$error.required" class="help-block">请输入密码</p>
-            <p ng-show="userForm.password.$error.pattern" class="help-block">密码必须3~9位数字</p>
+        <div class="form-group">
+            <label> <span class="star" style="color: firebrick">*</span>密码</label>
+            <input type="password" name="password" class="form-control" ng-model="vm.password"  ng-change="vm.passwordchange()" ng-model-options="{allowInvalid: true}" required placeholder="密码3~9位数字" pattern="\d{3,9}">
+            <p ng-show="userForm.password.$error.required && vm.passwordinput" class="has-error" style="color: firebrick">请输入密码</p>
+            <p ng-show="userForm.password.$error.pattern && vm.passwordinput" class="has-error" style="color: firebrick">密码必须3~9位数字</p>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-error' : userForm.emailname.$error.required || userForm.emailaddress.$error.required || userForm.emailaddress.$error.required}">
+        <div class="form-group">
             <label>邮箱</label>
-            <div class="row">
-                <div class="col-xs-7">
-                    <input type="text" ng-model="vm.email.name" name="emailname" class="form-control" required ng-model="vm.email.name" placeholder="任意邮箱名">
-                </div>
-                <div class="col-xs-5">
-                    <input type="text"  list="email"name="emailaddress" ng-model="vm.email.address"  class="form-control" required ng-model="vm.email.address" pattern="@[a-z0-9.-]+\.[a-z]{2,3}$"
-                    placeholder="@gmail.com">
-                    <datalist id="email">
-                        <option value="@gmail.com">
-                        <option value="@hotmail.com">
-                        <option value="@yahoo.com">
-                        <option value="@yeah.net">
-                    </datalist>
-                    <p ng-show="userForm.emailaddress.$error.pattern" class="help-block">请输入正确的邮箱格式</p>
-                </div>
-            </div>
-            <p ng-show="userForm.emailname.$error.required || userForm.emailaddress.$error.required" class="help-block">请输入邮箱</p>
+                    <input type="text" ng-model="vm.email" list='email' name="email" class="form-control" required ng-model="vm.email" placeholder="yuyuyu@163.com" ng-change="vm.complete()" ng-model-options="{allowInvalid: true}" pattern="^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+">
+            <datalist id="email">
+                <option value="{{vm.emailname}}{{address.title}}"  ng-if="vm.show" ng-repeat="address in vm.emailaddress" >
+            </datalist>
+            <p ng-show="userForm.email.$error.pattern" class="has-error" style="color: firebrick">请输入正确的邮箱格式</p>
         </div>
 
 <div class="form-group">
     <label>性别</label>
     </br>
-    <div class="row">
-        <div class="col-xs-6">
-            <input type="radio" ng-model="vm.user.gender" value="male">男
-        </div>
-        <div class="col-xs-6">
-            <input type="radio" ng-model="vm.user.gender" value="female">女
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-xs-6">-->
+            <label><input type="radio" ng-model="vm.gender" value="male">男</label> &nbsp;&nbsp;&nbsp;&nbsp;
+        <!--</div>-->
+        <!--<div class="col-xs-6">-->
+            <label><input type="radio" ng-model="vm.gender" value="female">女</label>
+        <!--</div>-->
+    <!--</div>-->
 </div>
 <div class="date-picker-module form-group">
     <label>出生日期</label>
-    <input date-range-picker="" class="form-control date-picker" type="text" ng-model="vm.daterange" options="{singleDatePicker: true}">
+    <input date-range-picker="" class="form-control date-picker" type="text" ng-model="vm.daterange" options="{singleDatePicker: true}"  max="vm.today">
 </div>
 <div class="form-group">
     <label>地址</label>
-    <ui-select ng-model="vm.selectedItem" search-enabled="true">
-        <ui-select-match placeholder="请选择地址">
-            <span ng-bind="vm.selectedItem.address"></span>
-        </ui-select-match>
-        <ui-select-choices repeat="item in (vm.selectedCity | filter: $select.search) track by item.id">
-            <span ng-bind="item.address"></span>
-        </ui-select-choices>
-    </ui-select>
+    <input type="text" list="address" ng-model="vm.address"  class="form-control" placeholder="台州市">
+    <datalist id="address">
+        <option value="珠海市">
+        <option value="广州市">
+        <option value="株洲市">
+        <option value="惠州市">
+    </datalist>
 </div>
 
 <button class="btn btn-primary btn-block"
-        ng-click="vm.open()"
+        ng-click="vm.create()"
         ng-disabled="userForm.$invalid">立即注册
 </button>
 <script type="text/ng-template" id="modal.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">注册成功</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        {{vm.greetmessage}}
+
     </div>
 </script>
-
 
 </form>
 </div>

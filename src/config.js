@@ -4,7 +4,7 @@
 // var fileController = require('./view/file/file.controller.js');
 // var barController = require('./view/bar/bar.controller.js');
 
-    angular.module('Demo', ['ui.router','ui.select','ui.bootstrap','daterangepicker','ngFileUpload','ui.bootstrap-slider'])
+    angular.module('Demo', ['ui.router','ui.select','ui.bootstrap','daterangepicker','ngFileUpload','ui.bootstrap-slider', 'angucomplete-alt'])
         .config(routeConfig).run(function ($state) {
         $state.go('table')
     });
