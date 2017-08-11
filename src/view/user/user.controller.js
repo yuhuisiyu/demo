@@ -28,35 +28,58 @@ angular.module('Demo').controller('userController',userController);
          {title:'@qq.com'},
          {title:'@yahoo.com'}
      ];
+     vm.user =[
+         {name:'yoyo',email:'1111@qq.com',gender:'女士',birth:'2016-08-19',address:'珠海市'},
+         {name:'yoyo2',email:'2222@qq.com',gender:'先生',birth:'2016-08-20',address:'广州市'},
+         {name:'yoyo3',email:'3333@qq.com',gender:'先生',birth:'2016-08-22',address:'深圳市'}
+     ];
      vm.today = new Date();
      vm.daterange = {startDate:null,endDate:moment()};
 
      //event handlers
-     vm.click = click;
+     // vm.click = click;
      vm.open = open;
-     vm.usernamechange = usernamechange;
-     vm.passwordchange = passwordchange;
+     vm.usernamevalidation = usernamevalidation;
+     vm.passwordvalidation = passwordvalidation;
      vm.complete = complete;
      vm.create = create;
 
      //create a new user
      function create(){
-
+     //     console.log(vm.username);
+     //     console.log(vm.password);
+         if(vm.username === undefined || vm.username === "") {
+             // vm.message = "请输入用户名";
+             vm.usernameinput = true;
+         }
+         if(vm.password === undefined || vm.password === "") {
+             // vm.message = "请输入密码";
+             vm.passwordinput = true;
+             return;
+         }
+         var uservalidate= /[A-z]{3,12}/;
+         var passwordvalidate= /\d{3,9}/;
+         if(uservalidate.test(vm.username)=== true) {
+             vm.usernamevalidate = true;
+         }
+         if(passwordvalidate.test(vm.password)=== true) {
+             vm.passwordvalidate = true;
+         }
      }
 
-     //click function: change the message when click
-     function click() {
-         vm.message = "lalala";
-     }
+     // //click function: change the message when click
+     // function click() {
+     //     vm.message = "lalala";
+     // }
 
 
      //for username validation
-     function usernamechange(){
+     function usernamevalidation(){
          vm.usernameinput = true;
      }
 
      //for password validation
-     function passwordchange(){
+     function passwordvalidation(){
          vm.passwordinput = true;
      }
 

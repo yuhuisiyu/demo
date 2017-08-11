@@ -6,16 +6,16 @@
 
         <div class="form-group" >
             <label><span class="star" style="color: firebrick">*</span>用户名</label>
-            <input type="text" name="name" class="form-control" ng-model="vm.username" required="" ng-change="vm.usernamechange()" ng-model-options="{allowInvalid: true}" placeholder="由3~12位字母组成" pattern="[A-z]{3,12}">
+            <input type="text" name="name" class="form-control" ng-model="vm.username" required ng-change="vm.usernamevalidation()" ng-model-options="{allowInvalid: true}" placeholder="由3~12位字母组成" pattern="[A-z]{3,12}">
             <p ng-show="userForm.name.$error.required && vm.usernameinput" class="has-error" style="color: firebrick">请输入用户名</p>
-            <p ng-show="userForm.name.$error.pattern && vm.usernameinput" class="has-error"style="color: firebrick">用户名长度为3~12并且由字母组成</p>
+            <p ng-show="userForm.name.$error.pattern" class="has-error"style="color: firebrick">用户名长度为3~12并且由字母组成</p>
         </div>
 
         <div class="form-group">
             <label> <span class="star" style="color: firebrick">*</span>密码</label>
-            <input type="password" name="password" class="form-control" ng-model="vm.password"  ng-change="vm.passwordchange()" ng-model-options="{allowInvalid: true}" required placeholder="密码3~9位数字" pattern="\d{3,9}">
+            <input type="password" name="password" class="form-control" ng-model="vm.password"  ng-change="vm.passwordvalidation()" ng-model-options="{allowInvalid: true}" required placeholder="密码3~9位数字" pattern="\d{3,9}">
             <p ng-show="userForm.password.$error.required && vm.passwordinput" class="has-error" style="color: firebrick">请输入密码</p>
-            <p ng-show="userForm.password.$error.pattern && vm.passwordinput" class="has-error" style="color: firebrick">密码必须3~9位数字</p>
+            <p ng-show="userForm.password.$error.pattern" class="has-error" style="color: firebrick">密码必须3~9位数字</p>
         </div>
 
         <div class="form-group">
@@ -55,8 +55,7 @@
 </div>
 
 <button class="btn btn-primary btn-block"
-        ng-click="vm.create()"
-        ng-disabled="userForm.$invalid">立即注册
+        ng-click="vm.create()">立即注册
 </button>
 <script type="text/ng-template" id="modal.html">
 
